@@ -115,3 +115,6 @@ def train():
     plt.gca().set_aspect('equal', 'datalim')
     plt.legend()
     plt.title('UMAP projection of the mnist dataset', fontsize=24)
+    
+if __name__ == "__main__":
+    train()
