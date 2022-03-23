@@ -11,9 +11,9 @@
 #SBATCH -J classifier
 # specify the filename to be used for writing output
 # NOTE: You must replace the <username> with your own account name!!
-#SBATCH -o /home-mscluster/arnolfokam/models/my_output_file_slurm.%N.%j.out
+#SBATCH -o /home-mscluster/mfokam/models/my_output_file_slurm.%N.%j.out
 # specify the filename for stderr
-#SBATCH -e /home-mscluster/arnolfokam/models/my_error_file_slurm.%N.%j.err
+#SBATCH -e /home-mscluster/mfokam/models/my_error_file_slurm.%N.%j.err
 
 echo ------------------------------------------------------
 echo -n 'Job is running on node ' $SLURM_JOB_NODELIST
