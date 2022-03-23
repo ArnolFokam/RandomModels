@@ -6,6 +6,7 @@ import torch.nn.functional as F
 import torch.optim as optim
 import matplotlib.pyplot as plt
 import numpy as np
+import wandb
 
 def imsave(img, path):
     img = img / 2 + 0.5     # unnormalize
@@ -32,6 +33,8 @@ class Net(nn.Module):
         return x
 
 if __name__ == "__main__":
+    wandb.init(project="classifier", entity="arnolfokam")
+
     transform = transforms.Compose(
         [transforms.ToTensor(),
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
@@ -53,9 +56,16 @@ if __name__ == "__main__":
 
     
     net = Net()
-    
+    EPOCHS = 2
+    learning_rate = 0.001
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+    optimizer = optim.SGD(net.parameters(), lr=learning_rate, momentum=0.9)
+    
+    wandb.config = {
+    "learning_rate": learning_rate,
+    "epochs": EPOCHS,
+    "batch_size": batch_size
+    }
 
     for epoch in range(2):  # loop over the dataset multiple times
 
@@ -75,6 +85,8 @@ if __name__ == "__main__":
 
             # print statistics
             running_loss += loss.item()
+            wandb.log({"loss": loss.item()})
+            
             if i % 2000 == 1999:    # print every 2000 mini-batches
                 print(f'[{epoch + 1}, {i + 1:5d}] loss: {running_loss / 2000:.3f}')
                 running_loss = 0.0
