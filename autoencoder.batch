@@ -32,7 +32,6 @@ source ~/.bashrc
 conda activate
 
 cd ~/models
-rm *.out *.err
 python classifier.py
 
 conda deactivate
