@@ -31,6 +31,6 @@ source ~/.bashrc
 
 conda activate
 
-cd ~/mdoels && python classifier.py
+cd ~/models && python classifier.py
 
 conda deactivate
