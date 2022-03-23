@@ -83,3 +83,8 @@ if __name__ == "__main__":
 
     PATH = './cifar_net.pth'
     torch.save(net.state_dict(), PATH)
+    dataiter = iter(testloader)
+    images, labels = dataiter.next()
+
+    # print images
+    imsave(torchvision.utils.make_grid(images), "fig.png")
